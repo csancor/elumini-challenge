@@ -9,6 +9,7 @@ using crud_accounts.Models;
 using crudAccounts.Models.Services;
 using AutoMapper;
 using crudAccounts.Resources;
+using crudAccounts.Extensions;
 
 namespace crudAccounts.Controllers
 {
@@ -27,6 +28,7 @@ namespace crudAccounts.Controllers
             _mapper = mapper;
         }
 
+        // GET: api/Pessoas
         [HttpGet]
         public async Task<IEnumerable<PessoaResource>> GetAllAsync()
         {
@@ -35,97 +37,114 @@ namespace crudAccounts.Controllers
 
             return resources;
         }
-/*
-        public PessoasController(ApiDbContext context)
-        {
-            _context = context;
-        }
 
-        // GET: api/Pessoas
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Pessoa>>> GetPessoas()
-        {
-            return await _context.Pessoas.ToListAsync();
-        }
-
-        // GET: api/Pessoas/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Pessoa>> GetPessoa(Guid id)
-        {
-            var pessoa = await _context.Pessoas.FindAsync(id);
-
-            if (pessoa == null)
-            {
-                return NotFound();
-            }
-
-            return pessoa;
-        }
-
-        // PUT: api/Pessoas/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPessoa(Guid id, Pessoa pessoa)
-        {
-            if (id != pessoa.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(pessoa).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PessoaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Pessoas
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Pessoa>> PostPessoa(Pessoa pessoa)
+        public async Task<IActionResult> PostAsync([FromBody] SavePessoaResource resource)
         {
-            _context.Pessoas.Add(pessoa);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
+            var pessoa = _mapper.Map<SavePessoaResource, Pessoa>(resource);
+            var result = await _pessoaService.SaveAsync(pessoa);
 
-            return CreatedAtAction("GetPessoa", new { id = pessoa.Id }, pessoa);
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            var pessoaResource = _mapper.Map<Pessoa, PessoaResource>(result.Pessoa);
+            return Ok(pessoaResource);
+
         }
 
-        // DELETE: api/Pessoas/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Pessoa>> DeletePessoa(Guid id)
-        {
-            var pessoa = await _context.Pessoas.FindAsync(id);
-            if (pessoa == null)
-            {
-                return NotFound();
-            }
+        /*
+                public PessoasController(ApiDbContext context)
+                {
+                    _context = context;
+                }
 
-            _context.Pessoas.Remove(pessoa);
-            await _context.SaveChangesAsync();
+                // GET: api/Pessoas
+                [HttpGet]
+                public async Task<ActionResult<IEnumerable<Pessoa>>> GetPessoas()
+                {
+                    return await _context.Pessoas.ToListAsync();
+                }
 
-            return pessoa;
-        }
+                // GET: api/Pessoas/5
+                [HttpGet("{id}")]
+                public async Task<ActionResult<Pessoa>> GetPessoa(Guid id)
+                {
+                    var pessoa = await _context.Pessoas.FindAsync(id);
 
-        private bool PessoaExists(Guid id)
-        {
-            return _context.Pessoas.Any(e => e.Id == id);
-        }
-*/
+                    if (pessoa == null)
+                    {
+                        return NotFound();
+                    }
+
+                    return pessoa;
+                }
+
+                // PUT: api/Pessoas/5
+                // To protect from overposting attacks, enable the specific properties you want to bind to, for
+                // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+                [HttpPut("{id}")]
+                public async Task<IActionResult> PutPessoa(Guid id, Pessoa pessoa)
+                {
+                    if (id != pessoa.Id)
+                    {
+                        return BadRequest();
+                    }
+
+                    _context.Entry(pessoa).State = EntityState.Modified;
+
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!PessoaExists(id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+
+                    return NoContent();
+                }
+
+                // POST: api/Pessoas
+                // To protect from overposting attacks, enable the specific properties you want to bind to, for
+                // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+                [HttpPost]
+                public async Task<ActionResult<Pessoa>> PostPessoa(Pessoa pessoa)
+                {
+                    _context.Pessoas.Add(pessoa);
+                    await _context.SaveChangesAsync();
+
+                    return CreatedAtAction("GetPessoa", new { id = pessoa.Id }, pessoa);
+                }
+
+                // DELETE: api/Pessoas/5
+                [HttpDelete("{id}")]
+                public async Task<ActionResult<Pessoa>> DeletePessoa(Guid id)
+                {
+                    var pessoa = await _context.Pessoas.FindAsync(id);
+                    if (pessoa == null)
+                    {
+                        return NotFound();
+                    }
+
+                    _context.Pessoas.Remove(pessoa);
+                    await _context.SaveChangesAsync();
+
+                    return pessoa;
+                }
+
+                private bool PessoaExists(Guid id)
+                {
+                    return _context.Pessoas.Any(e => e.Id == id);
+                }
+        */
     }
 }
