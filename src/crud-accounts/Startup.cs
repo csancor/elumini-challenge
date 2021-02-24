@@ -32,7 +32,7 @@ namespace crud_accounts
 
             services.AddScoped<IPessoaRepository, PessoaRepository>();
             services.AddScoped<IPessoaService, PessoaService>();
-
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddSwaggerGen(c =>
             {
