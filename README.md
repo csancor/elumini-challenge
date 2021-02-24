@@ -3,6 +3,7 @@
 Após clonar o repositório e realizar o Build do projeto, utilize o comando Update-Database para persistir as informações no LocalDb.
 
 Abra um terminal(CMD, Shell, PowerShell) e navegue até o diretório /src/crud-accounts
+
 Execute os comandos: 
 dotnet build
 dotnet run
