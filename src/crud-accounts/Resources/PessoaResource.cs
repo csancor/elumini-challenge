@@ -11,5 +11,6 @@ namespace crudAccounts.Resources
         public string Nome { get; set; }
         public int Cpf { get; set; }
         public int Rg { get; set; }
+       
     }
 }

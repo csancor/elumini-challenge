@@ -10,8 +10,8 @@ using crud_accounts.Models;
 namespace crudAccounts.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20210224154554_DDDAttempt")]
-    partial class DDDAttempt
+    [Migration("20210224200323_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,7 +62,7 @@ namespace crudAccounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8d86c8a7-ae56-4054-9887-91b44d9d91eb"),
+                            Id = new Guid("d7447105-ea62-4771-a355-7ac1ed141381"),
                             Bairro = "Centro",
                             Cep = "20260525",
                             Complemento = "casa 23",
@@ -73,7 +73,7 @@ namespace crudAccounts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e7a63836-4d03-481b-954f-341e8019cac0"),
+                            Id = new Guid("448ae198-f4d7-4a97-8c30-bfba535b002d"),
                             Bairro = "Centro",
                             Cep = "11260525",
                             Complemento = "bloco 6 ap 306",
@@ -84,7 +84,7 @@ namespace crudAccounts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2fd4be26-b3e5-488a-a8f8-4aa8db628971"),
+                            Id = new Guid("4fc66958-bbd6-45d7-b102-80f149077eea"),
                             Bairro = "Bangu",
                             Cep = "21280525",
                             Complemento = "casa 5",
@@ -161,21 +161,21 @@ namespace crudAccounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d6e1b10c-3664-4edc-8bdb-5a777dcb9155"),
+                            Id = new Guid("634cefd1-c455-40c2-a0fd-6e6339a1f268"),
                             Cpf = "111548",
                             Nome = "Herb Hancock",
                             Rg = "21514151"
                         },
                         new
                         {
-                            Id = new Guid("b5d1ff7c-ab29-419b-86a2-18aac3b6a5e0"),
+                            Id = new Guid("3fde07f1-fae8-4178-b456-2b91dd7bf42d"),
                             Cpf = "1252632545",
                             Nome = "Chick Corea",
                             Rg = "207255136"
                         },
                         new
                         {
-                            Id = new Guid("a82123cb-f661-4cf3-9870-39e911069543"),
+                            Id = new Guid("2882353d-b88e-47a8-8122-41f4899854ab"),
                             Cpf = "111548",
                             Nome = "Charlie Parker",
                             Rg = "153526548"
@@ -203,19 +203,19 @@ namespace crudAccounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b3899348-a40d-4c4a-ac93-f9bf2e78ac7a"),
+                            Id = new Guid("e4657da0-4993-48b8-a2a8-6ec6322ddd6b"),
                             Numero = "985635241",
                             Tipo = "Celular"
                         },
                         new
                         {
-                            Id = new Guid("b6e02d24-4aa7-41b8-b3e0-dc9c183c11dd"),
+                            Id = new Guid("ca8334ce-b16f-4542-8af3-c36ef0058b82"),
                             Numero = "975859654",
                             Tipo = "Celular"
                         },
                         new
                         {
-                            Id = new Guid("6175bf6c-dc01-47d7-9068-532c9f9ca596"),
+                            Id = new Guid("1919ad87-d319-4ca3-8232-5cfe3abe4651"),
                             Numero = "312524684",
                             Tipo = "Fixo"
                         });

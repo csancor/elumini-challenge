@@ -17,6 +17,14 @@
     <Compile Remove="Migrations\20210224042853_UpdatingRelationship1ToN.Designer.cs" />
     <Compile Remove="Migrations\20210224051349_UpdatingSeeds1.cs" />
     <Compile Remove="Migrations\20210224051349_UpdatingSeeds1.Designer.cs" />
+    <Compile Remove="Migrations\20210224051803_InitialMigration.cs" />
+    <Compile Remove="Migrations\20210224051803_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20210224062606_DBCheck.cs" />
+    <Compile Remove="Migrations\20210224062606_DBCheck.Designer.cs" />
+    <Compile Remove="Migrations\20210224062914_CheckingSeeds.cs" />
+    <Compile Remove="Migrations\20210224062914_CheckingSeeds.Designer.cs" />
+    <Compile Remove="Migrations\20210224154554_DDDAttempt.cs" />
+    <Compile Remove="Migrations\20210224154554_DDDAttempt.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
