@@ -1,6 +1,6 @@
 # elumini-challenge
 
-Após clonar o repositório e realizar o Build do projeto, utilize o comando Update-Database para persistir as informações no LocalDb.
+Após clonar o repositório, abra o projeto no Visual Studio e utilize o comando Update-Database através do Package Manager.
 
 Abra um terminal(CMD, Shell, PowerShell) e navegue até o diretório /src/crud-accounts
 
