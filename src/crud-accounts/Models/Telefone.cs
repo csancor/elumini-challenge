@@ -8,6 +8,6 @@ namespace crud_accounts.Models
     public class Telefone : Entity
     {
         public string Tipo { get; set; }
-        public int Numero { get; set; }
+        public decimal Numero { get; set; }
     }
 }

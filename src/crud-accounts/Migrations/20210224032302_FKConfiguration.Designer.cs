@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using crud_accounts.Models;
 
 namespace crud_accounts.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210224032302_FKConfiguration")]
+    partial class FKConfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +62,7 @@ namespace crud_accounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("62d6919d-73d3-4fa7-92b0-f2dcba69ee22"),
+                            Id = new Guid("8da9fd2c-0c15-49dc-9db5-510e1234df80"),
                             Bairro = "Centro",
                             Cep = "20260525",
                             Complemento = "casa 23",
@@ -71,7 +73,7 @@ namespace crud_accounts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("1e12b298-fb8c-45de-96dd-3e0280edfc25"),
+                            Id = new Guid("e2605fac-e00f-4da9-b7c3-491a9c6379a9"),
                             Bairro = "Centro",
                             Cep = "11260525",
                             Complemento = "bloco 6 ap 306",
@@ -82,7 +84,7 @@ namespace crud_accounts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("81bb69d7-881c-4a2c-871e-e8ce141cfa48"),
+                            Id = new Guid("53a73f88-a377-4e5e-9320-52e362ebecea"),
                             Bairro = "Bangu",
                             Cep = "21280525",
                             Complemento = "casa 5",
@@ -114,8 +116,8 @@ namespace crud_accounts.Migrations
                     b.Property<string>("Municipio")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Numero")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("PessoaForeignKey")
                         .HasColumnType("uniqueidentifier");
@@ -159,21 +161,21 @@ namespace crud_accounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("54c45cf0-4f94-4faf-9f6e-9e4d377ee8c9"),
+                            Id = new Guid("8b2f7e4a-930d-4702-899d-18db38140cfd"),
                             Cpf = "111548",
                             Nome = "Herb Hancock",
                             Rg = "21514151"
                         },
                         new
                         {
-                            Id = new Guid("9f114c06-0eca-4ac2-b730-9128eaf1074b"),
+                            Id = new Guid("78020c1a-7ba1-4aa5-841e-28f2767498e2"),
                             Cpf = "1252632545",
                             Nome = "Chick Corea",
                             Rg = "207255136"
                         },
                         new
                         {
-                            Id = new Guid("22334425-13f4-4537-b7da-69c55ecc819a"),
+                            Id = new Guid("1ec2f34f-34b2-40ed-a326-ba37c71dea22"),
                             Cpf = "111548",
                             Nome = "Charlie Parker",
                             Rg = "153526548"
@@ -201,19 +203,19 @@ namespace crud_accounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("33f0d0de-4601-4bea-bd59-2a2f20749021"),
+                            Id = new Guid("662e9883-9ed6-47a7-a500-a82111440cb6"),
                             Numero = "985635241",
                             Tipo = "Celular"
                         },
                         new
                         {
-                            Id = new Guid("c5a2570a-5a0d-4e2f-a636-d54ecea94fc3"),
+                            Id = new Guid("590f1e4f-f2bf-4152-8cc7-30f86df878c0"),
                             Numero = "975859654",
                             Tipo = "Celular"
                         },
                         new
                         {
-                            Id = new Guid("20f76c41-4e53-4e82-970f-43b396172189"),
+                            Id = new Guid("522f650a-a701-425c-b5fa-c54167df56eb"),
                             Numero = "312524684",
                             Tipo = "Fixo"
                         });
