@@ -11,10 +11,16 @@ namespace crudAccounts.Domain.Repositories.Persistence
     {
         public PessoaRepository(ApiDbContext context) : base(context)
         {
+
         }
         public async Task<IEnumerable<Pessoa>> ListAsync()
         {
             return await _context.Pessoas.ToListAsync();
+        }
+
+        public async Task AddAsync(Pessoa pessoa)
+        {
+            await _context.Pessoas.AddAsync(pessoa);
         }
     }
 }

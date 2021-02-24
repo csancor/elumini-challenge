@@ -9,5 +9,6 @@ namespace crudAccounts.Domain.Repositories
     public interface IPessoaRepository
     {
         Task<IEnumerable<Pessoa>> ListAsync();
+        Task AddAsync(Pessoa pessoa);
     }
 }
