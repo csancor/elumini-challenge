@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using crud_accounts.Models;
+using crudAccounts.Models.Services;
 
 namespace crudAccounts.Controllers
 {
@@ -13,8 +14,21 @@ namespace crudAccounts.Controllers
     [ApiController]
     public class PessoasController : ControllerBase
     {
-        private readonly ApiDbContext _context;
+        //private readonly ApiDbContext _context;
+        private readonly IPessoaService _pessoaService;
 
+        public PessoasController(IPessoaService pessoaService)
+        {
+            _pessoaService = pessoaService;
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<Pessoa>> GetAllAsync()
+        {
+            var pessoas = await _pessoaService.ListAsync();
+            return pessoas;
+        }
+/*
         public PessoasController(ApiDbContext context)
         {
             _context = context;
@@ -105,5 +119,6 @@ namespace crudAccounts.Controllers
         {
             return _context.Pessoas.Any(e => e.Id == id);
         }
+*/
     }
 }

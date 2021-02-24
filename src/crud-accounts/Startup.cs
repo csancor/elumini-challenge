@@ -1,4 +1,8 @@
 using crud_accounts.Models;
+using crudAccounts.Domain.Repositories;
+using crudAccounts.Domain.Repositories.Persistence;
+using crudAccounts.Models.Services;
+using crudAccounts.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -18,20 +22,23 @@ namespace crud_accounts
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApiDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
+
+            services.AddScoped<IPessoaRepository, PessoaRepository>();
+            services.AddScoped<IPessoaService, PessoaService>();
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cadastro de Usuários", Version = "v1" });
             });
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+       
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

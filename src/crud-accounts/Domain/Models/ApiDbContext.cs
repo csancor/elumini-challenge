@@ -26,7 +26,9 @@ namespace crud_accounts.Models
              .HasOne(p => p.Endereco)
              .WithOne(e => e.Pessoa)
              .HasForeignKey<EnderecoPessoa>(pfk => pfk.PessoaForeignKey);
-            
+
+
+
             modelBuilder.Entity<Pessoa>()
              .HasOne(p => p.Telefone)
              .WithOne(e => e.Pessoa)
