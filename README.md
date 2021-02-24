@@ -5,6 +5,7 @@ Após clonar o repositório, abra o projeto no Visual Studio e utilize o comando
 Abra um terminal(CMD, Shell, PowerShell) e navegue até o diretório /src/crud-accounts
 
 Execute os comandos: 
+
 dotnet build
 
 dotnet run
