@@ -9,5 +9,6 @@ namespace crud_accounts.Models
     {
         public string Tipo { get; set; }
         public decimal Numero { get; set; }
+        
     }
 }

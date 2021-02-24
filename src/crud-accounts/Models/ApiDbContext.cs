@@ -24,12 +24,22 @@ namespace crud_accounts.Models
 
             // 1 : 1 Relationship
             modelBuilder.Entity<Pessoa>()
-             .HasOne(b => b.Endereco)
-             .WithOne(i => i.Pessoa)
-             .HasForeignKey<EnderecoPessoa>(b => b.PessoaForeignKey);
+             .HasOne(p => p.Endereco)
+             .WithOne(e => e.Pessoa)
+             .HasForeignKey<EnderecoPessoa>(pfk => pfk.PessoaForeignKey);
+
+
+
+            //Student/Telefones - N -> Grade/Pessoa  - 1
+            modelBuilder.Entity<TelefonePessoa>()
+           .HasOne<Pessoa>(s => s.Pessoa)
+           .WithMany(g => g.Telefones)
+           .HasForeignKey(s => s.PessoaForeignKey);
+
+
 
             //seed Pessoa
-            modelBuilder.Entity<Pessoa>().HasData(new Pessoa { Id = Guid.NewGuid() , Nome = "Herb Hancock", Cpf = 00000111548, Rg = 0021514151 });
+            modelBuilder.Entity<Pessoa>().HasData(new Pessoa { Id = Guid.NewGuid() , Nome = "Herb Hancock",, Cpf = 00000111548, Rg = 0021514151 });
             modelBuilder.Entity<Pessoa>().HasData(new Pessoa { Id = Guid.NewGuid(), Nome = "Chick Corea", Cpf = 01252632545, Rg = 0207255136 });
             modelBuilder.Entity<Pessoa>().HasData(new Pessoa { Id = Guid.NewGuid(), Nome = "Charlie Parker", Cpf = 00000111548, Rg = 0153526548 });
 

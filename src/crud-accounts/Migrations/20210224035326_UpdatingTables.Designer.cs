@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using crud_accounts.Models;
 
 namespace crud_accounts.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210224035326_UpdatingTables")]
+    partial class UpdatingTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +62,7 @@ namespace crud_accounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ef13704e-529e-404a-be44-af1beabcd2e7"),
+                            Id = new Guid("d2c25be2-d137-4545-80cb-d40bc41c3ad1"),
                             Bairro = "Centro",
                             Cep = "20260525",
                             Complemento = "casa 23",
@@ -71,7 +73,7 @@ namespace crud_accounts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4b62b5cb-298b-421e-aed8-5095def1107c"),
+                            Id = new Guid("178846ed-b269-48d1-b413-7f4aac828c59"),
                             Bairro = "Centro",
                             Cep = "11260525",
                             Complemento = "bloco 6 ap 306",
@@ -82,7 +84,7 @@ namespace crud_accounts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6306a51a-da84-4536-b6ba-2434eef98a62"),
+                            Id = new Guid("92f6b75a-0004-4d04-bc13-f1b1722ed767"),
                             Bairro = "Bangu",
                             Cep = "21280525",
                             Complemento = "casa 5",
@@ -144,6 +146,9 @@ namespace crud_accounts.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(11)");
 
+                    b.Property<Guid?>("EnderecoId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
@@ -152,28 +157,35 @@ namespace crud_accounts.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
+                    b.Property<Guid?>("TelefoneId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("EnderecoId");
+
+                    b.HasIndex("TelefoneId");
 
                     b.ToTable("Pessoas");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("50b0558d-d9fa-46bc-b6a4-27f1bccea363"),
+                            Id = new Guid("808a421a-fad3-4c9d-9a6b-2b9955565a70"),
                             Cpf = "111548",
                             Nome = "Herb Hancock",
                             Rg = "21514151"
                         },
                         new
                         {
-                            Id = new Guid("45b28ca8-938f-4b16-b2de-780d255b7c44"),
+                            Id = new Guid("d0b6ac45-85ea-4f3b-b208-28846433e646"),
                             Cpf = "1252632545",
                             Nome = "Chick Corea",
                             Rg = "207255136"
                         },
                         new
                         {
-                            Id = new Guid("ae6948bf-41c6-45c2-9c50-6a99f3eaeb8f"),
+                            Id = new Guid("528ee351-e73b-4f24-b920-9fe8cec4eaf9"),
                             Cpf = "111548",
                             Nome = "Charlie Parker",
                             Rg = "153526548"
@@ -201,74 +213,42 @@ namespace crud_accounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ca288b58-b155-4763-91bc-31409fa0098f"),
+                            Id = new Guid("f1c9924f-1a43-4ce8-8114-3cde63623760"),
                             Numero = "985635241",
                             Tipo = "Celular"
                         },
                         new
                         {
-                            Id = new Guid("fa79fb9a-7e91-4db8-b626-af61134909b2"),
+                            Id = new Guid("286260f1-e6a4-4c76-a912-c6b395921ade"),
                             Numero = "975859654",
                             Tipo = "Celular"
                         },
                         new
                         {
-                            Id = new Guid("50d72c5b-d91c-4480-83da-e1cce9b9da04"),
+                            Id = new Guid("9af8d178-ddcf-413b-ab24-f49735c18dbf"),
                             Numero = "312524684",
                             Tipo = "Fixo"
                         });
                 });
 
-            modelBuilder.Entity("crud_accounts.Models.TelefonePessoa", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("PessoaForeignKey")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PessoaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Tipo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PessoaForeignKey");
-
-                    b.HasIndex("PessoaId")
-                        .IsUnique();
-
-                    b.ToTable("TelefonePessoa");
-                });
-
             modelBuilder.Entity("crud_accounts.Models.EnderecoPessoa", b =>
                 {
                     b.HasOne("crud_accounts.Models.Pessoa", "Pessoa")
-                        .WithOne("Endereco")
+                        .WithOne("EnderecoPessoa")
                         .HasForeignKey("crud_accounts.Models.EnderecoPessoa", "PessoaForeignKey")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("crud_accounts.Models.TelefonePessoa", b =>
+            modelBuilder.Entity("crud_accounts.Models.Pessoa", b =>
                 {
-                    b.HasOne("crud_accounts.Models.Pessoa", "Pessoa")
-                        .WithMany("Telefones")
-                        .HasForeignKey("PessoaForeignKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("crud_accounts.Models.Endereco", "Endereco")
+                        .WithMany()
+                        .HasForeignKey("EnderecoId");
 
-                    b.HasOne("crud_accounts.Models.Pessoa", null)
-                        .WithOne("Telefone")
-                        .HasForeignKey("crud_accounts.Models.TelefonePessoa", "PessoaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("crud_accounts.Models.Telefone", "Telefone")
+                        .WithMany()
+                        .HasForeignKey("TelefoneId");
                 });
 #pragma warning restore 612, 618
         }
