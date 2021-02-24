@@ -6,6 +6,7 @@ Abra um terminal(CMD, Shell, PowerShell) e navegue até o diretório /src/crud-a
 
 Execute os comandos: 
 dotnet build
+
 dotnet run
 
 Os endereços abaixo poderão ser acessados após a mensagem de confirmação que o serviço está rodando na porta 5001.
