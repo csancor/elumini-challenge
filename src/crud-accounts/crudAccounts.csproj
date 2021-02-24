@@ -5,6 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210224003618_InitialMigration.cs" />
+    <Compile Remove="Migrations\20210224003618_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20210224032302_FKConfiguration.cs" />
+    <Compile Remove="Migrations\20210224032302_FKConfiguration.Designer.cs" />
+    <Compile Remove="Migrations\20210224033318_FKFix.cs" />
+    <Compile Remove="Migrations\20210224033318_FKFix.Designer.cs" />
+    <Compile Remove="Migrations\20210224035326_UpdatingTables.cs" />
+    <Compile Remove="Migrations\20210224035326_UpdatingTables.Designer.cs" />
+    <Compile Remove="Migrations\20210224042853_UpdatingRelationship1ToN.cs" />
+    <Compile Remove="Migrations\20210224042853_UpdatingRelationship1ToN.Designer.cs" />
+    <Compile Remove="Migrations\20210224051349_UpdatingSeeds1.cs" />
+    <Compile Remove="Migrations\20210224051349_UpdatingSeeds1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.12">

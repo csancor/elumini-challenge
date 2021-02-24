@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using crud_accounts.Models;
 
-namespace crud_accounts.Migrations
+namespace crudAccounts.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
     partial class ApiDbContextModelSnapshot : ModelSnapshot
@@ -60,7 +60,7 @@ namespace crud_accounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ef13704e-529e-404a-be44-af1beabcd2e7"),
+                            Id = new Guid("0dc5646e-d40d-47fb-8e46-858ed0c92c77"),
                             Bairro = "Centro",
                             Cep = "20260525",
                             Complemento = "casa 23",
@@ -71,7 +71,7 @@ namespace crud_accounts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4b62b5cb-298b-421e-aed8-5095def1107c"),
+                            Id = new Guid("42c93df6-5dd4-4f53-9638-c5e2ae804ff3"),
                             Bairro = "Centro",
                             Cep = "11260525",
                             Complemento = "bloco 6 ap 306",
@@ -82,7 +82,7 @@ namespace crud_accounts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6306a51a-da84-4536-b6ba-2434eef98a62"),
+                            Id = new Guid("65a751f9-a1b4-463a-aff7-e04291ca879d"),
                             Bairro = "Bangu",
                             Cep = "21280525",
                             Complemento = "casa 5",
@@ -159,21 +159,21 @@ namespace crud_accounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("50b0558d-d9fa-46bc-b6a4-27f1bccea363"),
+                            Id = new Guid("e236d793-1405-4898-b48a-9f0f3ae5c722"),
                             Cpf = "111548",
                             Nome = "Herb Hancock",
                             Rg = "21514151"
                         },
                         new
                         {
-                            Id = new Guid("45b28ca8-938f-4b16-b2de-780d255b7c44"),
+                            Id = new Guid("17b27f89-096f-4277-9736-2a9924bd25f1"),
                             Cpf = "1252632545",
                             Nome = "Chick Corea",
                             Rg = "207255136"
                         },
                         new
                         {
-                            Id = new Guid("ae6948bf-41c6-45c2-9c50-6a99f3eaeb8f"),
+                            Id = new Guid("e6f2fd14-df75-474d-9fde-ce5d51ca12fe"),
                             Cpf = "111548",
                             Nome = "Charlie Parker",
                             Rg = "153526548"
@@ -201,19 +201,19 @@ namespace crud_accounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ca288b58-b155-4763-91bc-31409fa0098f"),
+                            Id = new Guid("b0c02e64-9847-4c6d-a583-713b981531ed"),
                             Numero = "985635241",
                             Tipo = "Celular"
                         },
                         new
                         {
-                            Id = new Guid("fa79fb9a-7e91-4db8-b626-af61134909b2"),
+                            Id = new Guid("36e4c094-c773-4459-a571-2d3ebe14bab8"),
                             Numero = "975859654",
                             Tipo = "Celular"
                         },
                         new
                         {
-                            Id = new Guid("50d72c5b-d91c-4480-83da-e1cce9b9da04"),
+                            Id = new Guid("5e519174-1db7-46cf-9e40-effe1c33ff3e"),
                             Numero = "312524684",
                             Tipo = "Fixo"
                         });
@@ -239,9 +239,7 @@ namespace crud_accounts.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PessoaForeignKey");
-
-                    b.HasIndex("PessoaId")
+                    b.HasIndex("PessoaForeignKey")
                         .IsUnique();
 
                     b.ToTable("TelefonePessoa");
@@ -259,14 +257,8 @@ namespace crud_accounts.Migrations
             modelBuilder.Entity("crud_accounts.Models.TelefonePessoa", b =>
                 {
                     b.HasOne("crud_accounts.Models.Pessoa", "Pessoa")
-                        .WithMany("Telefones")
-                        .HasForeignKey("PessoaForeignKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("crud_accounts.Models.Pessoa", null)
                         .WithOne("Telefone")
-                        .HasForeignKey("crud_accounts.Models.TelefonePessoa", "PessoaId")
+                        .HasForeignKey("crud_accounts.Models.TelefonePessoa", "PessoaForeignKey")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

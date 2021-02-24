@@ -6,13 +6,13 @@ namespace crud_accounts.Models
     public class Pessoa : Entity
     {
         public string Nome { get; set; }
-        public int Cpf { get; set; }
+        public int Cpf { get; set; } 
         public int Rg { get; set; }
         //public Telefone Telefone { get; set; }
         //public Endereco Endereco { get; set; }
-        public EnderecoPessoa Endereco  { get; set; }
-        public TelefonePessoa Telefone { get; set; }
-        public ICollection<TelefonePessoa> Telefones { get; set; }
+        public virtual EnderecoPessoa Endereco  { get; set; }
+        public virtual TelefonePessoa Telefone { get; set; }
+      //  public ICollection<TelefonePessoa> Telefones { get; set; }
     }    
 
     public class EnderecoPessoa : Entity
