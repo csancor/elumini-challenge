@@ -24,6 +24,7 @@ namespace crud_accounts
 
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<ApiDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -37,6 +38,8 @@ namespace crud_accounts
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cadastro de Usuários", Version = "v1" });
             });
+
+            services.AddAutoMapper(typeof(Startup));
         }
        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using crud_accounts.Models;
 using crudAccounts.Models.Services;
+using AutoMapper;
+using crudAccounts.Resources;
 
 namespace crudAccounts.Controllers
 {
@@ -16,17 +18,22 @@ namespace crudAccounts.Controllers
     {
         //private readonly ApiDbContext _context;
         private readonly IPessoaService _pessoaService;
+        private readonly IMapper _mapper;
+        
 
-        public PessoasController(IPessoaService pessoaService)
+        public PessoasController(IPessoaService pessoaService, IMapper mapper)
         {
             _pessoaService = pessoaService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Pessoa>> GetAllAsync()
+        public async Task<IEnumerable<PessoaResource>> GetAllAsync()
         {
             var pessoas = await _pessoaService.ListAsync();
-            return pessoas;
+            var resources = _mapper.Map<IEnumerable<Pessoa>, IEnumerable<PessoaResource>>(pessoas);
+
+            return resources;
         }
 /*
         public PessoasController(ApiDbContext context)
