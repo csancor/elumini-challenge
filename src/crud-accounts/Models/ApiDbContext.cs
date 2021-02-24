@@ -39,7 +39,7 @@ namespace crud_accounts.Models
 
 
             //seed Pessoa
-            modelBuilder.Entity<Pessoa>().HasData(new Pessoa { Id = Guid.NewGuid() , Nome = "Herb Hancock",, Cpf = 00000111548, Rg = 0021514151 });
+            modelBuilder.Entity<Pessoa>().HasData(new Pessoa { Id = Guid.NewGuid() ,Nome = "Herb Hancock", Cpf = 00000111548, Rg = 0021514151 });
             modelBuilder.Entity<Pessoa>().HasData(new Pessoa { Id = Guid.NewGuid(), Nome = "Chick Corea", Cpf = 01252632545, Rg = 0207255136 });
             modelBuilder.Entity<Pessoa>().HasData(new Pessoa { Id = Guid.NewGuid(), Nome = "Charlie Parker", Cpf = 00000111548, Rg = 0153526548 });
 
