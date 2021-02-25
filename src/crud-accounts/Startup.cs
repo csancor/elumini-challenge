@@ -30,6 +30,7 @@ namespace crud_accounts
 
             services.AddControllers();
 
+            services.AddScoped<ITelefoneRepository, TelefoneRepository>();
             services.AddScoped<IPessoaRepository, PessoaRepository>();
             services.AddScoped<IPessoaService, PessoaService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

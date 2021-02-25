@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crud_accounts.Models
+namespace crudAccounts.Resources
 {
-    public class Endereco : Entity
-    {        
+    public class SaveEnderecoResource
+    {
         public int Cep { get; set; }
         public string Logradouro { get; set; }
         public int Numero { get; set; }
@@ -14,10 +14,6 @@ namespace crud_accounts.Models
         public string Bairro { get; set; }
         public string Municipio { get; set; }
         public string uf { get; set; }
-
-        public Pessoa Pessoa { get; set; }
-
-        public Guid EnderecoPessoaId{ get; set; }
-
+        
     }
 }

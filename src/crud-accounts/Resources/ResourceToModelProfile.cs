@@ -12,6 +12,7 @@ namespace crudAccounts.Resources
         public ResourceToModelProfile()
         {
             CreateMap<SavePessoaResource, Pessoa>();
+            CreateMap<SaveEnderecoResource, Endereco>();
         }
     }
 }

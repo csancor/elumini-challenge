@@ -28,6 +28,11 @@ namespace crud_accounts.Models
              .WithMany(e => e.Telefones)
              .HasForeignKey(pfk => pfk.TelefonePessoaId);
 
+            modelBuilder.Entity<Pessoa>()
+           .HasOne(b => b.Endereco)
+           .WithOne(i => i.Pessoa)
+           .HasForeignKey<Endereco>(b => b.EnderecoPessoaId);
+
 
             //seed Pessoa
             modelBuilder.Entity<Pessoa>().HasData(

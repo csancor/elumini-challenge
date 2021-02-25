@@ -7,10 +7,10 @@ namespace crudAccounts.Resources
 {
     public class PessoaResource
     {
-        public Guid Id { get; set; }
+
         public string Nome { get; set; }
         public int Cpf { get; set; }
-        public int Rg { get; set; }
-       
+        public int Rg { get; set; }        
+
     }
 }

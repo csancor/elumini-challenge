@@ -17,11 +17,7 @@ namespace crudAccounts.Controllers
     [ApiController]
     public class PessoasController : ControllerBase
     {
-        private readonly ApiDbContext _context;
-
-        /* Implementação em DDD
-         * 
-         * 
+        //private readonly ApiDbContext _context;         
         private readonly IPessoaService _pessoaService;
         private readonly IMapper _mapper;
         
@@ -57,7 +53,9 @@ namespace crudAccounts.Controllers
             return Ok(pessoaResource);
 
         }
-        */        
+        
+        
+        /*
                 public PessoasController(ApiDbContext context)
                 {
                     _context = context;
@@ -148,6 +146,6 @@ namespace crudAccounts.Controllers
                 {
                     return _context.Pessoas.Any(e => e.Id == id);
                 }
-        
+        */
     }
 }

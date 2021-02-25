@@ -1,11 +1,13 @@
-﻿using System;
+﻿using AutoMapper;
+using crud_accounts.Models;
+using crudAccounts.Domain.Models;
+using crudAccounts.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using crud_accounts.Models;
 
 namespace crudAccounts.Controllers
 {
@@ -13,97 +15,46 @@ namespace crudAccounts.Controllers
     [ApiController]
     public class TelefonesController : ControllerBase
     {
-        private readonly ApiDbContext _context;
+        private readonly ITelefoneRepository _telefoneRepository;
+        private readonly IMapper _mapper;
 
-        public TelefonesController(ApiDbContext context)
+        public TelefonesController(ITelefoneRepository telefoneRepository, IMapper mapper)
         {
-            _context = context;
+            _telefoneRepository = telefoneRepository;
+            _mapper = mapper;
         }
 
-        // GET: api/Telefones
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Telefone>>> GetTelefones()
+        [HttpGet()]
+        public IActionResult GetTelefones()
         {
-            return await _context.Telefones.ToListAsync();
+            var TelefonesFromRepo = _telefoneRepository.GetTelefones();
+            return Ok(_mapper.Map<IEnumerable<TelefoneDto>>(TelefonesFromRepo));
         }
 
-        // GET: api/Telefones/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Telefone>> GetTelefone(Guid id)
+        [HttpGet("{telefoneId}")]
+        public IActionResult GetAuthor(Guid telefoneId)
         {
-            var telefone = await _context.Telefones.FindAsync(id);
+            var telefoneFromRepo = _telefoneRepository.GetTelefoneById(telefoneId);
 
-            if (telefone == null)
+            if (telefoneFromRepo == null)
             {
                 return NotFound();
             }
 
-            return telefone;
+            return Ok(_mapper.Map<TelefoneDto>(telefoneFromRepo));
         }
 
-        // PUT: api/Telefones/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTelefone(Guid id, Telefone telefone)
-        {
-            if (id != telefone.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(telefone).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TelefoneExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Telefones
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Telefone>> PostTelefone(Telefone telefone)
+        public ActionResult<TelefoneDto> CreateTelefone(TelefoneForCreationDto telefone)
         {
-            _context.Telefones.Add(telefone);
-            await _context.SaveChangesAsync();
+            var telefoneEntity = _mapper.Map<Telefone>(telefone);
+            _telefoneRepository.AddTelefone(telefoneEntity);
+            _telefoneRepository.Save();
 
-            return CreatedAtAction("GetTelefone", new { id = telefone.Id }, telefone);
-        }
-
-        // DELETE: api/Telefones/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Telefone>> DeleteTelefone(Guid id)
-        {
-            var telefone = await _context.Telefones.FindAsync(id);
-            if (telefone == null)
-            {
-                return NotFound();
-            }
-
-            _context.Telefones.Remove(telefone);
-            await _context.SaveChangesAsync();
-
-            return telefone;
-        }
-
-        private bool TelefoneExists(Guid id)
-        {
-            return _context.Telefones.Any(e => e.Id == id);
+            var telefoneToReturn = _mapper.Map<TelefoneDto>(telefoneEntity);
+            return CreatedAtRoute("GetTelefone",
+                new { telefoneId = telefoneToReturn.Id },
+                telefoneToReturn);
         }
     }
 }
