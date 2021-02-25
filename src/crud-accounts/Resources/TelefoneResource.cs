@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crud_accounts.Models
+namespace crudAccounts.Resources
 {
-    public class Telefone : Entity
+    public class TelefoneResource
     {
         public string Tipo { get; set; }
         public decimal Numero { get; set; }
-
-        public Guid TelefonePessoaId { get; set; }
-        public Pessoa Pessoa { get; set; }
-
+        public Guid PessoaId { get; set; }
     }
 }

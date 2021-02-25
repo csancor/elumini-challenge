@@ -12,6 +12,7 @@ namespace crud_accounts.Models.EntitiesMapping
         public void Configure(EntityTypeBuilder<Endereco> builder)
         {
             builder.HasKey(p => p.Id);
+
             builder.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
 
             builder.Property(p => p.Cep).IsRequired().HasColumnType("varchar(8)");

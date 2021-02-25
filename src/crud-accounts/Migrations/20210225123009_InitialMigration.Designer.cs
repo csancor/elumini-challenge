@@ -10,7 +10,7 @@ using crud_accounts.Models;
 namespace crudAccounts.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20210224200323_InitialMigration")]
+    [Migration("20210225123009_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,9 @@ namespace crudAccounts.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
+                    b.Property<Guid>("EnderecoPessoaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Logradouro")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
@@ -62,10 +65,11 @@ namespace crudAccounts.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d7447105-ea62-4771-a355-7ac1ed141381"),
+                            Id = new Guid("29685671-fd15-4279-a448-448170b4f3e1"),
                             Bairro = "Centro",
                             Cep = "20260525",
                             Complemento = "casa 23",
+                            EnderecoPessoaId = new Guid("c890ddf9-139b-43e9-888a-2d5103e746fa"),
                             Logradouro = "Rua Sete de Setembro",
                             Municipio = "Rio de Janeiro",
                             Numero = "15",
@@ -73,10 +77,11 @@ namespace crudAccounts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("448ae198-f4d7-4a97-8c30-bfba535b002d"),
+                            Id = new Guid("87fc46f1-186c-478e-a10b-b1b639beb4e9"),
                             Bairro = "Centro",
                             Cep = "11260525",
                             Complemento = "bloco 6 ap 306",
+                            EnderecoPessoaId = new Guid("c890ddf9-139b-43e9-888a-2d5103e746fb"),
                             Logradouro = "Avenida Paulista",
                             Municipio = "São Paulo",
                             Numero = "1205",
@@ -84,56 +89,16 @@ namespace crudAccounts.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4fc66958-bbd6-45d7-b102-80f149077eea"),
+                            Id = new Guid("871ff23b-1ef6-45ff-8052-65807537e78b"),
                             Bairro = "Bangu",
                             Cep = "21280525",
                             Complemento = "casa 5",
+                            EnderecoPessoaId = new Guid("c890ddf9-139b-43e9-888a-2d5103e746fc"),
                             Logradouro = "Avenida Ministro Ary Franco",
                             Municipio = "Rio de Janeiro",
                             Numero = "2255",
                             uf = "RJ"
                         });
-                });
-
-            modelBuilder.Entity("crud_accounts.Models.EnderecoPessoa", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Bairro")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Cep")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Complemento")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Logradouro")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Municipio")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("PessoaForeignKey")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PessoaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("uf")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PessoaForeignKey")
-                        .IsUnique();
-
-                    b.ToTable("EnderecoPessoa");
                 });
 
             modelBuilder.Entity("crud_accounts.Models.Pessoa", b =>
@@ -146,6 +111,9 @@ namespace crudAccounts.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(11)");
 
+                    b.Property<Guid?>("EnderecoId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
@@ -156,26 +124,28 @@ namespace crudAccounts.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EnderecoId");
+
                     b.ToTable("Pessoas");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("634cefd1-c455-40c2-a0fd-6e6339a1f268"),
+                            Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             Cpf = "111548",
                             Nome = "Herb Hancock",
                             Rg = "21514151"
                         },
                         new
                         {
-                            Id = new Guid("3fde07f1-fae8-4178-b456-2b91dd7bf42d"),
+                            Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b32"),
                             Cpf = "1252632545",
                             Nome = "Chick Corea",
                             Rg = "207255136"
                         },
                         new
                         {
-                            Id = new Guid("2882353d-b88e-47a8-8122-41f4899854ab"),
+                            Id = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b31"),
                             Cpf = "111548",
                             Nome = "Charlie Parker",
                             Rg = "153526548"
@@ -192,75 +162,62 @@ namespace crudAccounts.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(11)");
 
+                    b.Property<Guid>("TelefonePessoaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TelefonePessoaId");
+
                     b.ToTable("Telefones");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e4657da0-4993-48b8-a2a8-6ec6322ddd6b"),
+                            Id = new Guid("7716442a-f850-4123-ac51-40c3b1a7b7e2"),
                             Numero = "985635241",
+                            TelefonePessoaId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b35"),
                             Tipo = "Celular"
                         },
                         new
                         {
-                            Id = new Guid("ca8334ce-b16f-4542-8af3-c36ef0058b82"),
+                            Id = new Guid("1a54484a-a5e7-4e8a-9b12-a61d952b0cfe"),
                             Numero = "975859654",
+                            TelefonePessoaId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b32"),
                             Tipo = "Celular"
                         },
                         new
                         {
-                            Id = new Guid("1919ad87-d319-4ca3-8232-5cfe3abe4651"),
+                            Id = new Guid("1cdaf6ee-2630-4cd0-853f-1c094501ba7a"),
                             Numero = "312524684",
+                            TelefonePessoaId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b31"),
                             Tipo = "Fixo"
+                        },
+                        new
+                        {
+                            Id = new Guid("7bc39bf5-c23e-4673-9a2e-1dafe3dca1c8"),
+                            Numero = "985652541",
+                            TelefonePessoaId = new Guid("d28888e9-2ba9-473a-a40f-e38cb54f9b31"),
+                            Tipo = "Celular"
                         });
                 });
 
-            modelBuilder.Entity("crud_accounts.Models.TelefonePessoa", b =>
+            modelBuilder.Entity("crud_accounts.Models.Pessoa", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("PessoaForeignKey")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PessoaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Tipo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PessoaForeignKey")
-                        .IsUnique();
-
-                    b.ToTable("TelefonePessoa");
+                    b.HasOne("crud_accounts.Models.Endereco", "Endereco")
+                        .WithMany()
+                        .HasForeignKey("EnderecoId");
                 });
 
-            modelBuilder.Entity("crud_accounts.Models.EnderecoPessoa", b =>
+            modelBuilder.Entity("crud_accounts.Models.Telefone", b =>
                 {
                     b.HasOne("crud_accounts.Models.Pessoa", "Pessoa")
-                        .WithOne("Endereco")
-                        .HasForeignKey("crud_accounts.Models.EnderecoPessoa", "PessoaForeignKey")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("crud_accounts.Models.TelefonePessoa", b =>
-                {
-                    b.HasOne("crud_accounts.Models.Pessoa", "Pessoa")
-                        .WithOne("Telefone")
-                        .HasForeignKey("crud_accounts.Models.TelefonePessoa", "PessoaForeignKey")
+                        .WithMany("Telefones")
+                        .HasForeignKey("TelefonePessoaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
