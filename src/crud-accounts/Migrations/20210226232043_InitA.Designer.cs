@@ -10,8 +10,8 @@ using crud_accounts.Models;
 namespace crudAccounts.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20210226185332_Init")]
-    partial class Init
+    [Migration("20210226232043_InitA")]
+    partial class InitA
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -22,14 +22,14 @@ namespace crudAccounts.Domain.Repositories.Persistence
         }
 
 
-        Telefone ITelefoneRepository.GetTelefoneById(Guid telefoneId)
+        Telefone ITelefoneRepository.GetTelefoneById(Guid Id)
         {
-            if (telefoneId == Guid.Empty)
+            if (Id == Guid.Empty)
             {
-                throw new ArgumentNullException(nameof(telefoneId));
+                throw new ArgumentNullException(nameof(Id));
             }
 
-            return _context.Telefones.FirstOrDefault(a => a.Id == telefoneId);
+            return _context.Telefones.FirstOrDefault(a => a.Id == Id);
         }
 
         public void Dispose()
@@ -56,9 +56,9 @@ namespace crudAccounts.Domain.Repositories.Persistence
             // the repository fills the id (instead of using identity columns)
             telefone.Id = Guid.NewGuid();
 
-            foreach (var course in telefone.Telefones)
+            foreach (var telefoneData in telefone.Telefones)
             {
-                course.Id = Guid.NewGuid();
+                telefoneData.Id = Guid.NewGuid();
             }
 
             _context.Telefones.Add(telefone);

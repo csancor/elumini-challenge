@@ -10,7 +10,7 @@ namespace crudAccounts.Services
     {
         IEnumerable<Telefone> GetTelefones();
 
-        Telefone GetTelefoneById(Guid telefoneId);
+        Telefone GetTelefoneById(Guid Id);
         void AddTelefone(Telefone telefone);
         bool Save();
 

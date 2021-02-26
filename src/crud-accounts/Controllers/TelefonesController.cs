@@ -31,7 +31,7 @@ namespace crudAccounts.Controllers
             return Ok(_mapper.Map<IEnumerable<TelefoneDto>>(TelefonesFromRepo));
         }
 
-        [HttpGet("{telefoneId}", Name = "GetTelefone")]
+        [HttpGet("{id}", Name = "GetTelefone")]
         public IActionResult GetTelefoneById(Guid id)
         {
             var telefoneFromRepo = _telefoneRepository.GetTelefoneById(id);
