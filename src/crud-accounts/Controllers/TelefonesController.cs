@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace crudAccounts.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/telefones")]
     [ApiController]
     public class TelefonesController : ControllerBase
     {
@@ -31,10 +31,10 @@ namespace crudAccounts.Controllers
             return Ok(_mapper.Map<IEnumerable<TelefoneDto>>(TelefonesFromRepo));
         }
 
-        [HttpGet("{telefoneId}")]
-        public IActionResult GetAuthor(Guid telefoneId)
+        [HttpGet("{telefoneId}", Name = "GetTelefone")]
+        public IActionResult GetTelefoneById(Guid id)
         {
-            var telefoneFromRepo = _telefoneRepository.GetTelefoneById(telefoneId);
+            var telefoneFromRepo = _telefoneRepository.GetTelefoneById(id);
 
             if (telefoneFromRepo == null)
             {
@@ -52,9 +52,9 @@ namespace crudAccounts.Controllers
             _telefoneRepository.Save();
 
             var telefoneToReturn = _mapper.Map<TelefoneDto>(telefoneEntity);
-            return CreatedAtRoute("GetTelefone",
-                new { telefoneId = telefoneToReturn.Id },
-                telefoneToReturn);
+
+            return CreatedAtRoute("Get Telefone",
+                new { Id = telefoneToReturn.Id}, telefoneToReturn);
         }
     }
 }

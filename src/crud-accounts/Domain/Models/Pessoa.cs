@@ -12,6 +12,6 @@ namespace crud_accounts.Models
         public ICollection<Telefone> Telefones { get; set; } = new List<Telefone>();
 
         public Endereco Endereco { get; set; }
-
+        
     }
 }

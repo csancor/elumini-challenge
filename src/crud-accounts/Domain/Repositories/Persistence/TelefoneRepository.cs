@@ -48,7 +48,20 @@ namespace crudAccounts.Domain.Repositories.Persistence
 
         public void AddTelefone(Telefone telefone)
         {
-            throw new NotImplementedException();   
+            if (telefone == null)
+            {
+                throw new ArgumentNullException(nameof(telefone));
+            }
+
+            // the repository fills the id (instead of using identity columns)
+            telefone.Id = Guid.NewGuid();
+
+            foreach (var course in telefone.Telefones)
+            {
+                course.Id = Guid.NewGuid();
+            }
+
+            _context.Telefones.Add(telefone);
         }
 
         public bool Save()

@@ -9,6 +9,7 @@ namespace crudAccounts.Domain.Models
     {
         public string Tipo { get; set; }
         public decimal Numero { get; set; }
-        
+        public Guid TelefonePessoaId { get; set; }
+
     }
 }

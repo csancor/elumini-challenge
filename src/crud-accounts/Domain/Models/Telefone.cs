@@ -12,6 +12,8 @@ namespace crud_accounts.Models
 
         public Guid TelefonePessoaId { get; set; }
         public Pessoa Pessoa { get; set; }
-        public IEnumerable<Telefone> Telefones { get; internal set; }
+
+        public ICollection<Telefone> Telefones { get; set; }
+            = new List<Telefone>();
     }
 }

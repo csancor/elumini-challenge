@@ -16,8 +16,6 @@ namespace crud_accounts.Models
         public string uf { get; set; }
 
         public Pessoa Pessoa { get; set; }
-
-        public Guid EnderecoPessoaId{ get; set; }
-
+        public Guid EnderecoPessoaId { get; set; }
     }
 }
