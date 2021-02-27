@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,11 +10,11 @@ namespace crud_accounts.Models
     {
         public string Tipo { get; set; }
         public decimal Numero { get; set; }
-
-        public Guid TelefonePessoaId { get; set; }
+        
         public Pessoa Pessoa { get; set; }
 
-        public ICollection<Telefone> Telefones { get; set; }
-            = new List<Telefone>();
+        public Guid PessoaId { get; set; }
+
+        public  ICollection<Telefone>Telefones { get; internal set; } = new List<Telefone>();
     }
 }

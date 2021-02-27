@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace crudAccounts.Domain.Models
 {
-    public class TelefoneDto
+    public class TelefoneDto: EntityDto
     {
         public string Tipo { get; set; }
         public decimal Numero { get; set; }
 
-        public Guid Id { get; set; }
-
+        public Guid PessoaId { get; set; }
     }
 }

@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace crud_accounts.Models
+namespace crudAccounts.Domain.Models
 {
-    public class Entity
+    public class EntityDto
     {
-        protected Entity()
+        protected EntityDto()
         {
             Id = Guid.NewGuid();
         }

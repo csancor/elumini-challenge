@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿    using AutoMapper;
 using crud_accounts.Models;
 using crudAccounts.Domain.Models;
 using crudAccounts.Services;
@@ -31,10 +31,10 @@ namespace crudAccounts.Controllers
             return Ok(_mapper.Map<IEnumerable<TelefoneDto>>(TelefonesFromRepo));
         }
 
-        [HttpGet("{id}", Name = "GetTelefone")]
-        public IActionResult GetTelefoneById(Guid id)
+        [HttpGet("{telefoneId}", Name = "GetTelefone")]
+        public IActionResult GetTelefoneById(Guid telefoneId)
         {
-            var telefoneFromRepo = _telefoneRepository.GetTelefoneById(id);
+            var telefoneFromRepo = _telefoneRepository.GetTelefoneById(telefoneId);
 
             if (telefoneFromRepo == null)
             {
@@ -53,8 +53,8 @@ namespace crudAccounts.Controllers
 
             var telefoneToReturn = _mapper.Map<TelefoneDto>(telefoneEntity);
 
-            return CreatedAtRoute("Get Telefone",
-                new { Id = telefoneToReturn.Id}, telefoneToReturn);
+            return CreatedAtRoute("GetTelefone",
+                new { id = telefoneToReturn.Id}, telefoneToReturn);
         }
     }
 }
